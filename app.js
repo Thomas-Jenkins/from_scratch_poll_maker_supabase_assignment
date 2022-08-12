@@ -11,7 +11,7 @@ const voteTwoDown = document.getElementById('votes-two-down');
 // console.log(submitPoll);
 const archivePoll = document.getElementById('finish-poll');
 // let state
-let poll = {
+let currentPoll = {
     question: '',
     answer1: '',
     answer2: '',
@@ -24,7 +24,11 @@ let pastPolls = [];
   // get user input
   // use user input to update state 
   // update DOM to reflect the new state
-
+window.addEventListener('load', async () => {
+    const booger = await getPolls();
+    pastPolls = booger;
+    displayAllPolls(); 
+});
 submitPoll.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(submitPoll);
@@ -35,11 +39,11 @@ submitPoll.addEventListener('submit', (e) => {
     const answerTwo = formData.get('answer-two');
     // console.log(answerTwo);
 
-    poll.question = question;
-    poll.answer1 = answerOne;
-    poll.answer2 = answerTwo;
-    poll.votes1 = 0;
-    poll.votes2 = 0;
+    currentPoll.question = question;
+    currentPoll.answer1 = answerOne;
+    currentPoll.answer2 = answerTwo;
+    currentPoll.votes1 = 0;
+    currentPoll.votes2 = 0;
 
     // console.log(poll);
     displayPoll();
@@ -47,24 +51,24 @@ submitPoll.addEventListener('submit', (e) => {
 });
 
 voteOneUp.addEventListener('click', () => {
-    poll.votes1++;
+    currentPoll.votes1++;
     displayPoll();
 });
 voteOneDown.addEventListener('click', () => {
-    poll.votes1--;
+    currentPoll.votes1--;
     displayPoll();
 });
 voteTwoUp.addEventListener('click', () => {
-    poll.votes2++;
+    currentPoll.votes2++;
     displayPoll();
 });
 voteTwoDown.addEventListener('click', () => {
-    poll.votes2--;
+    currentPoll.votes2--;
     displayPoll();
 });
 
 archivePoll.addEventListener('click', async () => {
-    await createPoll(poll);
+    await createPoll(currentPoll);
     const booger = await getPolls();
     pastPolls = booger;
     displayAllPolls();
@@ -72,7 +76,7 @@ archivePoll.addEventListener('click', async () => {
 
 function displayPoll() {
     currentTrackedPollEl.textContent = '';
-    const pollEl = renderPoll(poll.question, poll.answer1, poll.answer2, poll.votes1, poll.votes2);
+    const pollEl = renderPoll(currentPoll.question, currentPoll.answer1, currentPoll.answer2, currentPoll.votes1, currentPoll.votes2);
     currentTrackedPollEl.append(pollEl);
 }
 
@@ -98,8 +102,10 @@ function renderPoll(question, answerOne, answerTwo, votesOne, votesTwo) {
 function displayAllPolls() {
     pollArchive.textContent = '';
     getPolls();
-    for (let polls of poll) {
-        const archiveEl = renderPoll(polls.question, polls.answer1, polls.answer2, polls.votes1, polls.votes2);
+    for (let poll of pastPolls) {
+        const archiveEl = renderPoll(poll.question, poll.answer1, poll.answer2, poll.votes1, poll.votes2);
         pollArchive.append(archiveEl);
     }
 }
+
+

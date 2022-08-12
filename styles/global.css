@@ -74,4 +74,18 @@ footer {
 #buttons-here {
     display: grid;
 }
+#right {
+    overflow: scroll;
+}
+#right div {
+    display: grid;
+    padding: 5px;
+    border: 1px solid black;
+    margin: 1px;
+    justify-content: center;
+    justify-items: center;
+}
+#right div * {
+    margin: 1px;
+}
 

@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +23,47 @@
     </header>
 
     <main>
+        <section id="main-board">
+            <div id="board">
+                <div id="left">
+                    <div id="left-top">
+                        <div id="poll-here">
 
+                        </div>
+                        <div id="buttons-here">
+                            <button id="votes-one-up">Answer One +</button>
+                            <button id="votes-one-down">Answer One -</button>
+                            <button id="votes-two-up">Answer Two +</button>
+                            <button id="votes-two-down">Answer Two -</button>
+                        </div>
+                    </div>
+                    <form id="inputs">
+                        <div id="left-bottom">
+                            <label for="question-input">
+                                <input name="question" type="text" placeholder="Enter Poll Question Here" >
+                            </label>
+                            <label for="answer-one-input">
+                                <input name="answer-one" type="text" placeholder="Enter Poll Answer One Here" name="answer-one">
+                            </label>
+                            <label for="answer-two-input">
+                                <input type="text" placeholder="Enter Poll Answer Two Input Here" name="answer-two">
+                            </label>
+                        </div>
+                        <div id="button-board">
+                            <button id="start-poll">
+                                Start Tracking Current Poll
+                            </button>
+                            <button id="finish-poll">
+                                Finish Poll
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div id="right">
+
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>&copy;2022 Software Developer</footer>

@@ -1,8 +1,9 @@
 // import functions and grab DOM elements
-import { createPoll, getPolls } from "./fetch-utils.js";
+import { createPoll, getPolls } from './fetch-utils.js';
 
 const submitPoll = document.getElementById('inputs');
 const currentTrackedPollEl = document.getElementById('poll-here');
+const pollArchive = document.getElementById('right');
 const voteOneUp = document.getElementById('votes-one-up');
 const voteTwoUp = document.getElementById('votes-two-up');
 const voteOneDown = document.getElementById('votes-one-down');
@@ -17,6 +18,7 @@ let poll = {
     votes1: '',
     votes2: ''
 };
+let pastPolls = [];
 
 // set event listeners 
   // get user input
@@ -61,8 +63,11 @@ voteTwoDown.addEventListener('click', () => {
     displayPoll();
 });
 
-archivePoll.addEventListener('click', () => {
-    createPoll(poll);
+archivePoll.addEventListener('click', async () => {
+    await createPoll(poll);
+    const booger = await getPolls();
+    pastPolls = booger;
+    displayAllPolls();
 });
 
 function displayPoll() {
@@ -88,4 +93,13 @@ function renderPoll(question, answerOne, answerTwo, votesOne, votesTwo) {
     div1.append(questionEl, answerOneEl, questOneVotes, answerTwoEl, questTwoVotes);
     
     return div1;
+}
+
+function displayAllPolls() {
+    pollArchive.textContent = '';
+    getPolls();
+    for (let polls of poll) {
+        const archiveEl = renderPoll(polls.question, polls.answer1, polls.answer2, polls.votes1, polls.votes2);
+        pollArchive.append(archiveEl);
+    }
 }

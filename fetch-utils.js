@@ -11,7 +11,6 @@ export async function createPoll(poll) {
 }
 export async function getPolls() {
     const response = await client.from('polls').select('*');
-
     return checkError(response);
 }
 

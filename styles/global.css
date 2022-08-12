@@ -67,3 +67,11 @@ footer {
     border: 1px solid black;
 }
 
+#left-top {
+    display: grid;
+    grid-template-columns: 80% 20%;
+}
+#buttons-here {
+    display: grid;
+}
+

@@ -33,3 +33,37 @@ footer {
     justify-content: flex-end;
     background-color: var(--footer-background);
 }
+/* My code after */
+#board {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 600px;
+    width: 800px;
+    background-color: seagreen;
+    border: 1px solid black;
+}
+#left {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    border: 1px solid black;
+}
+#left-bottom {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border: 1px solid black;
+}
+#inputs {
+    display: grid;
+    grid-template-rows: 33% 33% 34%;
+    border: 1px solid black;
+}
+#question-input {
+    display: grid;
+    border: 1px solid black;
+}
+#button-board {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    border: 1px solid black;
+}
+
